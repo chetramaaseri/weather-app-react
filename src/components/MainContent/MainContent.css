@@ -3,12 +3,47 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.switchUnit{
+    display: flex;
     align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+.tempSwitch{
+    appearance: none;
+}
+.tempSwitchLabel{
+    display: inline-block;
+    border-radius: 22px;
+    background: linear-gradient(90deg, #33E017 0%, rgba(149, 241, 134, 0.00) 100%);
+    height:30px;
+    width: 92px;
+    position: relative;
+    transition: all 0.3s linear;
+}
+.tempSwitchLabel::after{
+    content: "";
+    height: 26px;
+    width: 26px;
+    position: absolute;
+    left: 0px;
+    top: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background: #1E1E1E;
+    transition: all 0.3s linear;
+}
+.tempSwitch:checked + .tempSwitchLabel{
+    background: linear-gradient(90deg, rgba(149, 241, 134, 0.00) 0%, #33E017 100%);
+}
+.tempSwitch:checked + .tempSwitchLabel::after{
+    transform: translateX(66px);
 }
 .searchBar{
-    /* border: 2px solid #fff; */
     border-radius: 10px;
     width: 50%;
+    margin: auto;
 }
 .searchBar input{
     width: 100%;
@@ -41,12 +76,19 @@
     border-radius: 32px;
     background: linear-gradient(147deg, #AD36CB 26.56%, #333 68.75%);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(255, 250, 250, 0.25), 0px 4px 4px 0px rgba(253, 245, 245, 0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: start;
     padding: 30px 20px 20px 40px;
 }
+.noWeatherData{
+    text-align: center;
+    margin-top: 30px;
+}
+.weatherDataDisplay{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 .weatherCard .cityName{
+    text-transform: capitalize;
     font-size: 25px;
     font-weight: 600;
     margin: 0 0 10px 0;
@@ -83,14 +125,26 @@
 .hourlyForcast{
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    gap: 30px;
+    overflow-x: scroll;
+    padding-bottom: 30px;
+}
+.hourlyForcast::-webkit-scrollbar{
+    margin: 10px 0 0 0;
+    height: 2px;
+    background-color: #1E1E1E;
+}
+.hourlyForcast::-webkit-scrollbar-thumb{
+    background-color: #fff;
+    color: #fff;
 }
 .hourlyForcast .hourlyCard{
     font-size: 13px;
-    height: 95px;
-    width: 80px;
-    padding: 10px;
+    height: 140px;
+    min-width: 120px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +156,7 @@
 .hourlyCard .background{
     z-index: 9;
     height: 60px;
-    width: 80px;
+    width: 120px;
     position: absolute;
     bottom: 0px;
     left: 0;
@@ -112,15 +166,69 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(4px);
 }
-
-.hourlyCard .time{
+.hourlyCard .noHourlyData{
+    height: 100%;
     z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.hourlyCard img{
+.hourlyCard .noHourlyData img{
     z-index: 99;
-    height: 40px;
+    height: 60px;
+    width: 60px;
+}
+.hourlyCard .hourlyCardDisplay{
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.hourlyCard .hourlyCardDisplay .date{
+    font-size: 11px;
+}
+.hourlyCard .hourlyCardDisplay .weather{
+    font-size: 15px;
+    font-weight: 600;
+}
+.hourlyCard .hourlyCardDisplay .weatherDesc{
+    font-size: 11px;
+}
+.hourlyCard .hourlyCardDisplay img{
+    z-index: 99;
+    height: 30px;
     width: 40px;
 }
-.hourlyCard .temp{
-    z-index: 99;
+
+@media (max-width:720px) {
+    .searchBar {
+        margin: 10px auto;
+        width: 80%;
+    }
+    .weatherCardContainer{
+        margin: 0;
+    }
+    .weatherCard {
+        scale: 0.8;
+        width: 400px;
+        height: 250px;
+        padding: 15px 10px 10px 20px;
+    }
+}
+@media (max-width:480px) {
+    .searchBar {
+        margin: 10px auto;
+        width: 95%;
+    }
+    .weatherCardContainer{
+        margin: 0;
+    }
+    .weatherCard {
+        scale: 0.7;
+        width: 400px;
+        height: 250px;
+        padding: 15px 10px 10px 20px;
+    }
 }

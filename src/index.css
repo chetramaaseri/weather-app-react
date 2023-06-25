@@ -4,6 +4,7 @@ body {
   font-weight:400 ;
   color: #fff;
   background-color: #1E1E1E;
+  user-select: none;
 }
 *{
   padding: 0;
