@@ -41,7 +41,11 @@ function MainContent(){
         if(weatherData.coord){
             getForcastData()
         }
-    },[weatherData])
+    },[weatherData,unit])
+
+    useEffect(() => {
+        document.title = 'Weather App';
+    });
     return (
         <div className="mainContent">
             <div className="switchUnit">
